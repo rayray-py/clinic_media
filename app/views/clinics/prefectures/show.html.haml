@@ -1,0 +1,32 @@
+- assign_meta_tags title: "#{@prefecture.name}の美容外科・美容皮膚科",
+                   description: "#{@prefecture.name}の美容外科・美容皮膚科一覧です。気になったクリニックへカウンセリングやお問い合わせが出来ます。"
+= render_breadcrumbs builder: ::Breadcrumbs::CustomBuilder
+%section.hero.is-primary
+  .hero-body
+    .container
+      %h1.title
+        #{@prefecture.name}の美容外科・美容皮膚科
+      %h2.subtitle
+        #{@prefecture.name}の美容外科・美容皮膚科一覧です。気になったクリニックへカウンセリングやお問い合わせが出来ます。
+%section.section
+  .container
+    .columns
+      .column.is-two-thirds
+        .columns
+          .column
+            .card
+              .card-content.content
+                %h2 市区町村で絞り込む
+                %ul.is-marginless.columns.is-multiline.is-mobile
+                  = render partial: 'city', collection: @cities, locals: {prefecture: @prefecture}
+        .columns
+          .column
+            .card
+              .card-content
+                .content
+                  %h2 #{@prefecture.name}の美容外科・美容皮膚科一覧（#{@clinics.total_count}件）
+                  = render partial: "clinics/clinic", collection: @clinics
+              .card-content
+                = paginate @clinics
+      %aside.column
+        = render 'shared/side_bar'

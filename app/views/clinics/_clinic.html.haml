@@ -1,0 +1,32 @@
+.columns
+  .column
+    .card
+      .card-content.content
+        .media
+          .media-left
+            %span.icon.is-large
+              %i.fa.fa-hospital-o
+          .media-content
+            %h3.is-marginless= clinic.name
+            - if clinic.group.present?
+              %p= clinic.group.name
+        .content
+          %p
+            %span.tag.is-primary 　住所　
+            = clinic.address
+          %p
+            %span.tag.is-primary アクセス
+            - if clinic.transportation
+              = clinic.transportation
+            - else
+              不明
+          %p
+            %span.tag.is-primary 診療時間
+            - if clinic.office_hours
+              = clinic.office_hours
+            - else
+              不明
+      %footer.card-footer
+        = link_to clinic_path(clinic), class: "card-footer-item" do
+          %span  #{clinic.name}の詳細　
+          %i.fa.fa-chevron-right

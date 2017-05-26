@@ -1,0 +1,7 @@
+.columns
+  .column
+    .box.is-paddingless
+      .card-content
+        %p.title.is-4 カテゴリ一覧
+        .menu
+          = render partial: "shared/side_components/category_list", collection: @root_categories, cached: true

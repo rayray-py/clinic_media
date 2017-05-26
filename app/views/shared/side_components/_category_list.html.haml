@@ -1,0 +1,4 @@
+%p.menu-label
+  = category_list.name
+%ul.menu-list.menu-toggle
+  = render partial: "shared/side_components/children_category_list", collection: category_list.children

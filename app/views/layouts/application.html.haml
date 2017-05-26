@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
+    %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"}
+    %title Cliniclist
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+    = show_meta_tags
+    = analytics_init if Rails.env.production?
+    // googleアドセンス
+    = javascript_include_tag "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",  async: true
+    :javascript
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-2042377981827942",
+        enable_page_level_ads: true
+      });
+  %body.wrap
+    = render "shared/header"
+    = render "shared/flash_message/default"
+    = yield
+    = render "shared/footer"

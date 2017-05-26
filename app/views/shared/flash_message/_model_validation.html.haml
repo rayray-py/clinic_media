@@ -1,0 +1,8 @@
+- if instance.errors.any?
+  .message.is-primary
+    .message-header
+      %p エラー
+      %button.delete
+    .message-body
+      - instance.errors.full_messages.each do |message|
+        %p= message

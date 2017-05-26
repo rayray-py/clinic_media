@@ -1,0 +1,90 @@
+%section.section
+  .container
+    = render "shared/flash_message/model_validation", instance: article
+    .box
+      = form_for [:admin, article] do |f|
+        .level
+          .level-left
+            %h1.title 記事を#{submit_name}する
+          .level-right
+            .level-item
+              = button_tag "下書きで#{submit_name}", class: "button is-primary is-large", name: "draft"
+            .level-item
+              = button_tag "公開して#{submit_name}", class: "button is-primary is-large"
+        %hr
+        = f.label :title, "タイトル", class: "label"
+        .control
+          = f.text_field :title, class: "input", placeholder: "記事タイトル"
+        = f.label :description, "記事概要（description）", class: "label"
+        .control
+          = f.text_area :description, class: "input cancelEnter", placeholder: "ディスクリプション(32文字)", style: "height: 5rem;"
+        = f.label :image, "サムネイル画像", class: "label"
+        .control
+          %label.control.mount-image
+            - if article.image.present?
+              = image_tag article.image, class: "image is-128x128"
+            - else
+              %img.image.is-128x128{src: "/images/no-image.png"}
+            = f.file_field :image, accept: ".jpg,.gif,.png,image/gif,image/jpeg,image/png"
+            = f.hidden_field :image_cache, class: "image-cache"
+        %label.label カテゴリー
+        = collection_check_boxes(:article, :category_ids, Category.all.map{|category| category if category.is_childless?}.compact, :id, :name) do |b|
+          = b.label class: "checkbox is-margin-5" do
+            = b.check_box + b.text
+        = f.label :tag_list, "タグ", class: "label"
+        .control
+          = f.text_field :tag_list, value: article.tag_list.join(','), class: "input"
+        .columns
+          .column.is-half
+            .level
+              .level-left
+                = f.label :content, "本文", class: "label"
+              .level-right
+                %a.modal-button.level-item{"data-target": "#modal-insert-clinic"}
+                  %span.icon
+                    %i.fa.fa-hospital-o
+                %a.modal-button.level-item{"data-target": "#modal-upload-image"}
+                  %span.icon
+                    %i.fa.fa-file-image-o
+          .column.is-half
+            .level
+              .level-left
+                %p#textlength 文字数：
+        .columns#editor
+          %p.control.column.is-half
+            = markdown_editor(f, :content)
+          .column.is-half
+            #output.content.article{"v-html": "input | marked", style: "height: 700px; overflow: scroll;"}
+= render 'markdown_modal'
+%script{src: 'https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'}
+%script{src: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'}
+= javascript_include_tag 'components/preview'
+= javascript_include_tag "components/markdown"
+= javascript_include_tag "components/beforeunload"
+= javascript_include_tag "components/cancelEnter"
+:javascript
+  $(function(){
+    new Vue({
+      el: '#editor',
+      data: {
+        input: "#{j @article.content}",
+      },
+      filters: {
+        marked: marked
+      }
+    })
+  });
+  $(function(){
+    $("input"). keydown(function(e) {
+      if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  });
+
+  // 文字数カウント
+  function countLength( text, field ) {
+    document.getElementById(field).innerHTML = "文字数：" + text.length;
+  }

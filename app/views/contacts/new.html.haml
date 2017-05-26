@@ -1,0 +1,26 @@
+%section.section
+  .container
+    = render "shared/flash_message/model_validation", instance: @contact
+    .card
+      .card-content
+        %h1.title お問い合わせ
+        %hr
+        = form_for @contact do |f|
+          .control.is-horizontal
+            .control-label
+              %label.label お名前
+            .control
+              = f.text_field :name, autofocus: true, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label メールアドレス
+            .control
+              = f.email_field :email, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label お問い合わせ内容
+            .control
+              = f.text_area :content, class: "textarea input", rows: 5
+          .level
+            .level-item.has-text-centered
+              = f.submit "送信", class: "button is-primary is-outlined"

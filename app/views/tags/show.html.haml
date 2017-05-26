@@ -1,0 +1,19 @@
+%section.section
+  .container
+    .columns
+      .column.is-two-thirds
+        .card
+          .card-content.content
+            %h1.title
+              %span.tag.is-primary.is-medium.is-margin-3
+                = params[:name]
+              タグの記事一覧
+            %hr
+            - if @articles.present?
+              = render @articles
+            - else
+              %p.is-10.has-text-centered 記事が見つかりませんでした。
+          .card-content
+            = paginate @articles
+      %aside.column
+        = render 'shared/side_bar'

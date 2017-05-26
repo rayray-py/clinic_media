@@ -1,0 +1,8 @@
+%li.column.is-one-quarter-tablet.is-half-mobile
+  - if city.clinics.present?
+    = link_to clinics_prefecture_city_path(prefecture, city) do
+      %i.fa.fa-caret-right
+      = city.name
+      (#{city.clinics.length})
+  - else
+    %p.is-disabled #{city.name} (0)

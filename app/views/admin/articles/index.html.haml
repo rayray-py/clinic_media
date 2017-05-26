@@ -1,0 +1,18 @@
+%section.section
+  .container
+    .box
+      %h1 記事一覧
+      %table.table
+        %thead
+          %tr
+            %th ID
+            %th 画像
+            %th タイトル
+            %th 投稿者
+            %th カテゴリー
+            %th 状態
+            %th 操作
+        %tbody
+          = render @articles
+      .has-text-centered
+        = paginate @articles

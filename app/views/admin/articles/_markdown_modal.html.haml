@@ -1,0 +1,42 @@
+-# 画像アップロード
+.modal.modal-ter#modal-upload-image
+  .modal-background
+  .modal-card
+    %header.modal-card-head
+      %p.modal-card-title 画像アップロード
+      %button.delete
+    %section.modal-card-body
+      = form_for [:api, ArticleImage.new(alt: nil)], id: "article_image_form" do |f|
+        %label.label alt属性（詳細に記述）
+        .control
+          = f.text_field :alt, class: "input"
+        = f.label :image, "画像", class: "label"
+        .control
+          = f.file_field :image, accept: ".jpg,.gif,.png,image/gif,image/jpeg,image/png"
+    %footer.modal-card-foot
+      %button.button.is-success#submit_image{type: "submit", method: "post"} アップロード
+      %a.button キャンセル
+      %p アップロード後に改行すると反映されます。
+-# クリニックデータ挿入
+.modal.modal-ter#modal-insert-clinic
+  .modal-background
+  .modal-card
+    %header.modal-card-head
+      %p.modal-card-title クリニック情報の挿入
+      %button.delete
+    %section.modal-card-body
+      = form_tag "/api/clinics/insert", method: :get, id: "clinic_data_form" do
+        %label.label クリニック検索
+        .control
+          = text_field :clinic, :name, class: "input", id: "clinic_search"
+        #clinic_search_result.columns.is-multiline
+        %label.label 記載する施術名
+        .control
+          = text_field :treatment, :name, class: "input"
+        %label.label 施術の料金
+        .control
+          = text_field :treatment, :price, class: "input"
+    %footer.modal-card-foot
+      %button.button.is-success#submit_clinic{type: "submit", method: "get"} 挿入
+      %a.button キャンセル
+      %p クリニック情報のテンプレートは記事詳細画面でレンダリングされるようになっているのでプレビュー画面で反映されていなくても大丈夫です。

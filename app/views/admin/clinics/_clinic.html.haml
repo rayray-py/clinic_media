@@ -1,0 +1,9 @@
+%tr
+  %td= clinic.id
+  %td= clinic.name
+  %td= clinic.city.name
+  %td= clinic.site_url
+  %td
+    = link_to "編集", edit_admin_clinic_path(clinic)
+    - if current_user.admin?
+      = link_to "削除", admin_clinic_path(clinic), method: :delete, data: {confirm: "削除してもよろしいですか？"}

@@ -1,0 +1,23 @@
+- assign_meta_tags title: "美容外科・美容皮膚科のクリニック検索",
+                   description: "美容整形や肌の施術を扱う全国の美容外科と美容皮膚科を検索することができます。都道府県や市区町村別にお近くのおすすめクリニックを検索し、営業時間・アクセスなどの基本情報や所属医師、紹介されている記事を調べましょう。"
+= render_breadcrumbs builder: ::Breadcrumbs::CustomBuilder
+%section.hero.is-primary
+  .hero-body
+    .container
+      %h1.title
+        美容外科・美容皮膚科のクリニック検索
+      %h2.subtitle
+        美容整形や肌の施術を扱う全国の美容外科と美容皮膚科を検索することができます。都道府県や市区町村別にお近くのおすすめクリニックを検索し、営業時間・アクセスなどの基本情報や所属医師、紹介されている記事を調べましょう。
+%section.section.is-paddingless-side
+  .container
+    .columns
+      .column.is-two-thirds
+        .columns
+          .column
+            .box.is-paddingless
+              .card-content
+                %h2.title 都道府県から探す
+                .columns.is-multiline
+                  = render partial: 'region', collection: @prefectures, cached: true
+      %aside.column
+        = render 'shared/side_bar'

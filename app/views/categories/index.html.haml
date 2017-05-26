@@ -1,0 +1,17 @@
+- assign_meta_tags title: "美容整形の施術名や悩みから記事を探す",
+                   description: "美容整形の施術や悩み別に、効果や施術の流れ・リスク(失敗例や副作用)・値段の相場を中心に、ダウンタイム(術後経過・痛み・腫れ・内出血・赤み)や口コミ・名医・おすすめクリニックをさがすことができます。"
+= render_breadcrumbs builder: ::Breadcrumbs::CustomBuilder
+%section.hero.is-primary
+  .hero-body
+    .container
+      %h1.title
+        美容整形の施術名や悩みからさがす
+      %h2.subtitle
+        美容整形の施術や悩み別に、効果や施術の流れ・リスク(失敗例や副作用)・値段の相場を中心に、ダウンタイム(術後経過・痛み・腫れ・内出血・赤み)や口コミ・名医・おすすめクリニックをさがすことができます。
+%section.section
+  .container
+    .columns
+      .column.is-two-thirds
+        = render @root_categories
+      %aside.column
+        = render 'shared/side_bar'

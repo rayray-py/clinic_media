@@ -1,0 +1,26 @@
+- assign_meta_tags title: "美容整形・体の悩みの新着記事一覧",
+                   description: "美容整形や皮膚科の施術に関する記事やニュースを新着順に紹介しています。施術の効果や流れ・リスク（失敗例や副作用）・値段の相場を中心に、ダウンタイム（術後経過・痛み・腫れ・内出血・赤み）について学べます。"
+= render_breadcrumbs builder: ::Breadcrumbs::CustomBuilder
+%section.hero.is-primary
+  .hero-body
+    .container
+      %h1.title
+        美容整形・体の悩みの新着記事一覧
+      %h2.subtitle
+        美容整形や皮膚科の施術に関する記事やニュースを新着順に紹介しています。施術の効果や流れ・リスク（失敗例や副作用）・値段の相場を中心に、ダウンタイム（術後経過・痛み・腫れ・内出血・赤み）について学べます。
+%section.section.is-paddingless-side
+  .container
+    .columns
+      .column.is-two-thirds
+        .columns
+          .column
+            .box.is-paddingless
+              .card-content.content
+                %h2.title 記事一覧
+                %hr
+                = render @articles
+              .card-footer
+                .card-footer-item
+                  = paginate @articles
+      %aside.column
+        = render 'shared/side_bar'

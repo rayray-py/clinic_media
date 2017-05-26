@@ -1,0 +1,110 @@
+- assign_meta_tags title: "#{@clinic.name}の住所・電話番号や公式サイト情報",
+                   description: "#{@clinic.name}の住所・電話番号や公式サイト情報が乗っています。マップから#{@clinic.name}の場所も簡単に探せます。#{@clinic.name}などのクリニックを探すならClnic List"
+= render_breadcrumbs builder: ::Breadcrumbs::CustomBuilder
+%section.hero.is-primary
+  .hero-body
+    .container
+      .columns
+        .column.is-three-quarters
+          .media
+            .media-left
+              %span.icon.is-x-large
+                %i.fa.fa-hospital-o
+            .media-content
+              %h1.title= @clinic.name
+              %h2.subtitle #{@clinic.name}の基本情報です。公式ページからお問い合わせ・カウンセリングの申し込みが可能です。
+          - if @clinic.phone_number || @clinic.site_url
+            .content.is-margin-top-20
+              .columns.is-mobile
+                - if @clinic.site_url
+                  .column.is-one-quarter-tablet.is-one-quarter-tablet.is-half-mobile
+                    = link_to @clinic.site_url, class: "button is-primary is-inverted is-fullwidth", target: "_blank" do
+                      %strong 公式ホームページ
+                - if @clinic.phone_number
+                  .column.is-one-quarter-tablet.is-half-mobile
+                    %a.button.is-primary.is-inverted.is-fullwidth{href: "tel:#{@clinic.phone_number}"}
+                      %strong
+                        %span.icon
+                          %i.fa.fa-phone
+                        = @clinic.phone_number
+%section.section
+  .container
+    .columns
+      .column.is-two-thirds
+        .columns
+          .column
+            %article.card
+              .card-content.content
+                %h2 #{@clinic.name}の基本情報
+                %hr
+                .columns.is-mobile
+                  .column
+                    %strong クリニック名
+                  .column.is-three-quarters-tablet.is-two-thirds-mobile
+                    %p= @clinic.name
+                - if @clinic.phone_number
+                  %hr
+                  .columns.is-mobile
+                    .column
+                      %strong 電話番号
+                    .column.is-three-quarters-tablet.is-two-thirds-mobile
+                      %a{href: "tel:#{@clinic.phone_number}"}= @clinic.phone_number
+                %hr
+                  .columns.is-mobile
+                    .column
+                      %strong 住所
+                    .column.is-three-quarters-tablet.is-two-thirds-mobile
+                      %p 〒#{@clinic.postal_code}
+                      %p= @clinic.address
+                      %div{style: "position: relative; width: 100%; padding-top: 100%;"}
+                        %iframe.is-fullwidth{src: "https://maps.google.co.jp/maps?q=#{@clinic.address}&z=15&output=embed&iwloc=J=m", frameborder: "0", style: "position: absolute; top: 0; left: 0; border:0; width: 100%; height: 100%;", allowfullscreen: true}>
+                - if @clinic.transportation
+                  %hr
+                    .columns.is-mobile
+                      .column
+                        %strong アクセス
+                      .column.is-three-quarters-tablet.is-two-thirds-mobile
+                        %p= @clinic.transportation
+                - if @clinic.office_hours
+                  %hr
+                    .columns.is-mobile
+                      .column
+                        %strong 診療時間
+                      .column.is-three-quarters-tablet.is-two-thirds-mobile
+                        %p= @clinic.office_hours
+                - if @clinic.holiday
+                  %hr
+                    .columns.is-mobile
+                      .column
+                        %strong 休業日
+                      .column.is-three-quarters-tablet.is-two-thirds-mobile
+                        %p= @clinic.holiday
+                - if @clinic.reservation
+                  %hr
+                    .columns.is-mobile
+                      .column
+                        %strong 予約方法
+                      .column.is-three-quarters-tablet.is-two-thirds-mobile
+                        %p= @clinic.reservation
+                - if @clinic.credit_card
+                  %hr
+                    .columns.is-mobile
+                      .column
+                        %strong クレジットカード
+                      .column.is-three-quarters-tablet.is-two-thirds-mobile
+                        %p= @clinic.credit_card
+                - if @clinic.medical_loan == "あり"
+                  %hr
+                    .columns.is-mobile
+                      .column
+                        %strong メディカルローン
+                      .column.is-three-quarters-tablet.is-two-thirds-mobile
+                        %p あり
+                %hr
+                  .columns.is-mobile
+                    .column
+                      %strong 公式サイト
+                    .column.is-three-quarters-tablet.is-two-thirds-mobile
+                      = link_to @clinic.name, @clinic.site_url, target: "_blank"
+      %aside.column
+        = render 'shared/side_bar'

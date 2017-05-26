@@ -1,0 +1,22 @@
+- if elements.present?
+  .breadcrumbs
+    .container
+      %nav.breadcrumb.is-marginless{itemscope: true, itemtype: "http://schema.org/BreadcrumbList"}
+        .nav-left
+          - elements[0..-2].each.with_index(1) do |element, index|
+            .nav-item{itemprop: "itemListElement", itemscope: true, itemtype: "http://schema.org/ListItem"}
+              - if element.path.present?
+                %a{href: element.path, itemprop: "item"}
+                  %span{itemprop: "name"}
+                    = element.name
+                %meta{itemprop: "position", content: index}
+              - else
+                %a{itemprop: "item"}
+                  %span{itemprop: "name"}
+                    = element.name
+                %meta{itemprop: "position", content: index}
+              %span.divider 　>
+          .nav-item
+            %a{href: elements.last.path}
+              %span
+                = elements.last.name

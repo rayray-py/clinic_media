@@ -1,0 +1,43 @@
+%section.section
+  .container
+    = render "shared/flash_message/model_validation", instance: @user
+    .box
+      %h1.title 新規ユーザー作成画面
+      %hr
+      = form_for [:admin, @user] do |f|
+        .control.is-horizontal
+          .control-label
+            = f.label :image, "プロフィール画像", class: "label"
+          .control
+            %label.control.mount-image
+              - if @user.image.present?
+                = image_tag @user.image, class: "image is-128x128"
+              - else
+                %img.image.is-128x128{src: "/images/no-image.png"}
+              = f.file_field :image, accept: ".jpg,.gif,.png,image/gif,image/jpeg,image/png"
+              = f.hidden_field :image_cache, class: "image-cache"
+        .control.is-horizontal
+          .control-label
+            = f.label :name, "名前", class: "label"
+          .control
+            = f.text_field :name, class: "input", placeholder: "高橋　礼", required: true
+        .control.is-horizontal
+          .control-label
+            = f.label :email, "メールアドレス", class: "label"
+          .control
+            = f.email_field :email, class: "input", placeholder: "hoge@hoge.com", required: true
+        .control.is-horizontal
+          .control-label
+            %lable.label ステータス
+          .control
+            %span.select
+              = f.collection_select :status, User.statuses_i18n, :first, :last
+        .control.is-horizontal
+          .control-label
+            = f.label :password, "パスワード", class: "label"
+          .control
+            = f.password_field :password, class: "input", autocomplete: "off", required: true
+        .level
+          .level-item.has-text-centered
+            = f.submit "この内容で新規作成", class: "button is-primary is-outlined"
+= javascript_include_tag 'components/preview'

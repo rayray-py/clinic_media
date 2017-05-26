@@ -1,0 +1,15 @@
+.card
+  .card-content
+    %h1.title 検索結果
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th 名前
+          %th 所在地
+          %th 公式URL
+          %th 操作
+      %tbody
+        = render clinics
+  .card-content
+    = paginate clinics, remote: true

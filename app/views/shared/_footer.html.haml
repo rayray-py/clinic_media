@@ -1,0 +1,24 @@
+%footer.footer.is
+  .container
+    .columns
+      .column
+        %p
+          %strong Cliniclist
+    .columns
+      .column.is-half
+        .menu
+          %p.menu-label.is-marginless カテゴリ
+          %ul.menu-list.columns.is-multiline.is-mobile.is-marginless
+            = render partial: "shared/footer_components/category_lists", collection: @root_categories
+      .column.is-half
+        .menu
+          %p.menu-label.is-marginless Cliniclistについて
+          %ul.menu-list
+            %li
+              = link_to "サイトマップ", sitemap_path
+            %li
+              = link_to "プライバシーポリシー", privacy_path
+            %li
+              = link_to "お問い合わせ", contact_path
+  %p.has-text-centered
+    Copyright © Clniclist All Rights Reserved.

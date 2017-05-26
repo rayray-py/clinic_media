@@ -1,0 +1,16 @@
+%section.section
+  .container
+    .card
+      .card-content
+        %h1.title 管理者ログイン
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .control
+            = f.label :email, class: "label"
+            = f.email_field :email, class: "input", required: true
+          .control
+            = f.label :password, class: "label"
+            = f.password_field :password, class: "input", required: true
+          .control
+            .level
+              .level-item.has-text-centered
+                = f.submit "ログイン", class: "button is-primary is-outlined"

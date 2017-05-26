@@ -1,0 +1,11 @@
+%article.media
+  %figure.media-left
+    %p.image.is-64x64
+      = link_to article_path(ranked_article) do
+        = image_tag ranked_article.image.thumb.url
+  .media-content
+    .content
+      %h3.title.is-5.is-marginless.truncate.is-row-2
+        %strong
+          = link_to ranked_article.title, article_path(ranked_article)
+      %p #{ranked_article.helpful_count}人が参考になったと言っています

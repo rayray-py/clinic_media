@@ -1,0 +1,11 @@
+.column.is-half-tablet
+  .card
+    %header.card-header
+      %p.card-header-title
+        = Prefecture.regions.key(region_counter)
+      %a.card-header-icon
+        %span.icon
+          %i.fa.fa-angle-down
+    .card-content
+      %ul.menu-list
+        = render partial: 'prefecture', collection: region

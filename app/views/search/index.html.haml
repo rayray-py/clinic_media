@@ -1,0 +1,26 @@
+%section.section
+  .container
+    .columns
+      .column.is-two-thirds
+        .card
+          .card-content.content
+            %h1.title キーワード検索
+            = search_form_for(Article.ransack, url: search_index_path) do |f|
+              .control.has-addons
+                = f.search_field :title_or_content_cont, placeholder: "キーワードで探す", class: "input is-expanded", value: @keyword
+                = button_to search_index_path, class: "button" do
+                  %span.icon
+                    %i.fa.fa-search
+            - if @keyword.present?
+              %h2.title.is-4 「#{@keyword}」での検索結果
+            - else
+              %h2.title.is-4 キーワードを入力してください
+            %hr
+            - if @articles.present?
+              = render @articles
+            - else
+              %p.is-10.has-text-centered 記事が見つかりませんでした。
+          .card-content
+            = paginate @articles
+      %aside.column
+        = render 'shared/side_bar'

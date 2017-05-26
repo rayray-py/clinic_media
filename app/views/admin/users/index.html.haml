@@ -1,0 +1,20 @@
+%section.section
+  .container
+    .box
+      %h1 管理者一覧（#{@users.count}件）
+      %table.table
+        %thead
+          %tr
+            %th 画像
+            %th 名前
+            %th メールアドレス
+            %th ステータス
+            %th 操作
+        %tbody
+          = render @users
+      .has-text-centered
+        = paginate @users
+      .level
+        .level-left
+          .level-item
+            = link_to "新規作成", new_admin_user_path, class: "button"

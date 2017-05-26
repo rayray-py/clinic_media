@@ -1,0 +1,9 @@
+.columns
+  .column
+    .box.is-paddingless
+      .card-content.content
+        %p.title.is-4
+          人気のタグ
+        %p.subtitle.is-6
+          今話題になっているキーワード
+        = render partial: "shared/tag_list", collection: @tags

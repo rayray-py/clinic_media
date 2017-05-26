@@ -1,0 +1,7 @@
+.columns
+  .column
+    .box.is-paddingless
+      .card-content.content
+        %p.title.is-4 週間ランキング
+        %p.subtitle.is-6 最近1週間の人気記事
+        = render partial: "shared/side_components/ranked_article", collection: @ranked_articles, cached: true

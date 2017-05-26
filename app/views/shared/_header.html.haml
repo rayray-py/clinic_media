@@ -1,0 +1,24 @@
+.header
+  %nav.nav
+    .container
+      .nav-left
+        = link_to root_path ,class: "nav-item" do
+          %p.title Clinic List
+        %p.nav-item.is-tab.is-hidden-mobile 体の悩みを解決するための対策・美容整形・クリニック紹介サイト
+      .nav-item
+        = search_form_for(Article.ransack, url: search_index_path) do |f|
+          .control.has-addons
+            = f.search_field :title_or_content_cont, placeholder: "キーワードで探す", class: "input"
+            = button_to search_index_path, class: "button" do
+              %span.icon
+                %i.fa.fa-search
+.nav.has-shadow
+  .container
+    .nav-left.is-hidden-mobile
+      = link_to "お悩み・施術をさがす", categories_path, class: "nav-item is-tab is-4 column"
+      = link_to "記事をさがす", articles_path, class: "nav-item is-tab is-4 column"
+      = link_to "クリニックをさがす", clinics_path, class: "nav-item is-tab is-4 column"
+    .nav-left.is-hidden-tablet
+      = link_to "施術を探す", categories_path, class: "nav-item is-tab is-4 column"
+      = link_to "記事を探す", articles_path, class: "nav-item is-tab is-4 column"
+      = link_to "クリニックを探す", clinics_path, class: "nav-item is-tab is-4 column"

@@ -1,0 +1,11 @@
+- if children_category_list.children.present?
+  %li.li-toggle
+    = link_to children_category_list.name, category_path(children_category_list)
+    -# 初期はカテゴリが少ないのでコメントアウト
+    -# %ul
+    -#   - children_category_list.children.each do |child|
+    -#     %li
+    -#       = link_to child.name, category_path(child)
+- else
+  %li.li-toggle
+    = link_to children_category_list.name, category_path(children_category_list)

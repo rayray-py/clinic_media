@@ -1,0 +1,6 @@
+- if cookies["cliniclist_helpful_button_#{article.id}"]
+  #helpful_button_disabled
+    %button.button.is-primary.is-disabled.is-large.is-margin-5 参考になった
+- else
+  #helpful_button
+    %button.button.is-primary.is-outlined.is-large.is-margin-5 参考になった

@@ -1,0 +1,72 @@
+%section.section
+  .container
+    = render "shared/flash_message/model_validation", instance: @clinic
+    .card
+      .card-content
+        %h1.title クリニックを新規作成
+        %hr
+        = form_for [:admin, @clinic] do |f|
+          .control.is-horizontal
+            .control-label
+              %label.label クリニック名
+            .control
+              = f.text_field :name, autofocus: true, class: "input", placeholder: "聖心美容クリニック東京院"
+          .control.is-horizontal
+            .control-label
+              %label.label 住所
+            .control
+              = f.text_field :address, class: "input", placeholder: "東京都港区六本木6-6-9 ピラミデ2Ｆ"
+          .control.is-horizontal
+            .control-label
+              %label.label 地域名（/clinics参照）
+            .control
+              = f.text_field :city_id, autofocus: true, class: "input", placeholder: "港区"
+          .control.is-horizontal
+            .control-label
+              %label.label 公式URL
+            .control
+              = f.text_field :site_url, class: "input", placeholder: "https://track.affiliate-b.com/visit.php?guid=ON&a=i2294h-Z48451W&p=l5473720"
+          .control.is-horizontal
+            .control-label
+              %label.label 電話番号
+            .control
+              = f.text_field :phone_number, class: "input", placeholder: "0120-509-905"
+          .control.is-horizontal
+            .control-label
+              %label.label 郵便番号
+            .control
+              = f.text_field :postal_code, class: "input", placeholder: "106-0032"
+          .control.is-horizontal
+            .control-label
+              %label.label 交通手段
+            .control
+              = f.text_field :transportation, class: "input", placeholder: "日比谷線六本木駅から徒歩3分　大江戸線六本木駅から徒歩3分"
+          .control.is-horizontal
+            .control-label
+              %label.label 休業日
+            .control
+              = f.text_field :holiday, class: "input", placeholder: "年中無休"
+          .control.is-horizontal
+            .control-label
+              %label.label 予約方法
+            .control
+              = f.text_field :reservation, class: "input", placeholder: "電話予約　WEB予約"
+          .control.is-horizontal
+            .control-label
+              %label.label 診療時間
+            .control
+              = f.text_field :office_hours, class: "input", placeholder: "10：00～19：00"
+          .control.is-horizontal
+            .control-label
+              %label.label クレジットカード
+            .control
+              = f.text_field :credit_card, class: "input", placeholder: "あり"
+          .control.is-horizontal
+            .control-label
+              %label.label メディカルローン
+            .control
+              %span.select
+                = f.collection_select :medical_loan, Clinic.medical_loans_i18n, :first, :last
+          .level
+            .level-item.has-text-centered
+              = f.submit "この内容で新規作成", class: "button is-primary is-outlined"

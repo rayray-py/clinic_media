@@ -1,0 +1,14 @@
+%article.media
+  %figure.media-left
+    %p.image.is-96x96
+      = link_to article_path(article) do
+        = image_tag article.image.thumb.url
+  .media-content
+    .content
+      %h3.is-marginless.is-marginless.truncate.is-row-2
+        %strong= link_to article.title, article_path(article)
+      %p.subtitle.is-6.is-marginless.truncate.is-row-2
+        = article.description
+      %p
+        %strong= article.helpful_count
+        人が参考になったと言っています

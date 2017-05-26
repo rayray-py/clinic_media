@@ -1,0 +1,22 @@
+%section.section
+  .container
+    .box
+      %h1.title クリニック検索
+      %hr
+      = search_form_for(Clinic.ransack, url: search_admin_clinics_path, remote: true) do |f|
+        %label.label 病院名の部分一致
+        .control
+          = f.search_field :name_cont, placeholder: "湘南美容外科", class: "input"
+        %label.label 住所の部分一致
+        .control
+          = f.search_field :address_cont, placeholder: "東京都", class: "input"
+        %label.label 公式サイトURLの部分一致
+        .control
+          = f.search_field :site_url_cont, placeholder: "affiliate-b", class: "input"
+        .control
+          %label.checkbox
+            = f.check_box :name_or_address_or_site_url_or_phone_number_or_postal_code_or_transportation_or_holiday_or_reservation_or_credit_card_or_office_hours_null
+            NULLが存在するレコードを表示
+        .control
+          = f.submit '検索', class: "button"
+    .result-field

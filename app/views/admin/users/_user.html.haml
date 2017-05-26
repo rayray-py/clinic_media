@@ -1,0 +1,12 @@
+%tr
+  %td
+    .figure
+      .image.is-32x32
+        = image_tag user.has_image
+  %td= user.name
+  %td= user.email
+  %td= user.status_i18n
+  %td
+    = link_to "編集", edit_admin_user_path(user)
+    - if current_user.admin?
+      = link_to "削除", admin_user_path(user), method: :delete, data: {confirm: "削除してもよろしいですか？"}

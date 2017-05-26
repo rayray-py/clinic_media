@@ -1,0 +1,18 @@
+%tr
+  %td
+    = article.id
+  %td
+    .figure
+      .image.is-32x32
+        = image_tag article.image.thumb
+  %td
+    = link_to article.title, article_path(article), target: "_blank"
+  %td
+    = article.user_name
+  %td カテゴリー名
+  %td
+    = article.status_i18n
+  %td
+    = link_to "編集", edit_admin_article_path(article)
+    - if current_user.admin?
+      = link_to "削除", admin_article_path(article), method: :delete, data: {confirm: "削除してもよろしいですか？"}

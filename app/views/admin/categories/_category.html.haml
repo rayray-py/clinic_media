@@ -1,0 +1,12 @@
+%tr
+  %td= category.id
+  %td{id: "category_name_#{category.id}"}
+    - if category.depth == 2
+      = category.name
+    - else
+      = link_to "#{category.name}（#{category.children.count}）", admin_category_path(category)
+  %td= category.articles.count
+  %td
+    = link_to "名前の変更", edit_admin_category_path(category.id), remote: true
+    - if current_user.admin?
+      = link_to "削除", admin_category_path(category), method: :delete, data: {confirm: "削除してもよろしいですか？"}

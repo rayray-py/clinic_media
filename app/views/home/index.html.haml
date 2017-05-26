@@ -1,0 +1,29 @@
+%section.section.is-paddingless-side
+  .container
+    .columns
+      .column.is-two-thirds
+        .columns
+          .column
+            .box.is-paddingless
+              .card-content.content
+                %h2.title 新着記事
+                %hr
+                = render @articles
+              .card-footer
+                .card-footer-item
+                  = link_to articles_path, class: "card-footer-item" do
+                    %p もっとみる　
+                    %i.fa.fa-chevron-right
+        .columns
+          .column
+            .box.is-paddingless
+              .card-content.content
+                %h2.title おすすめクリニック
+                = render @clinics
+              .card-footer
+                .card-footer-item
+                  = link_to clinics_path, class: "card-footer-item" do
+                    %p もっとみる　
+                    %i.fa.fa-chevron-right
+      %aside.column
+        = render 'shared/side_bar'

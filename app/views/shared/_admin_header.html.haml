@@ -1,0 +1,14 @@
+.header
+  %nav.nav
+    .container
+      .nav-left
+        = link_to root_path ,class: "nav-item" do
+          %p.title ClinicList管理画面
+      = link_to "記事一覧", admin_articles_path, class: "nav-item"
+      = link_to "記事作成", new_admin_article_path, class: "nav-item"
+      = link_to "クリニック編集", admin_clinics_path, class: "nav-item"
+      = link_to "クリニック追加", new_admin_clinic_path, class: "nav-item"
+      - if current_user.admin?
+        = link_to "管理者編集", admin_users_path, class: "nav-item"
+        = link_to "カテゴリ編集", admin_categories_path, class: "nav-item"
+      = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-item"

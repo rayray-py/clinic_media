@@ -1,0 +1,9 @@
+%li.column.is-one-third-tablet.is-half-mobile
+  = link_to category_path(sub_category_list) do
+    %span.icon
+      %i.fa.fa-caret-right
+    = sub_category_list.name
+    (#{sub_category_list.articles.count})
+  %p
+    #{sub_category_list.name}(#{sub_category_list.parent.name})
+    の効果や施術の流れ・リスク(失敗例や副作用)・値段の相場を中心に…

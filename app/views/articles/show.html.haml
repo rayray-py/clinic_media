@@ -1,0 +1,62 @@
+- assign_meta_tags title: @article.title,
+                   description: @article.description,
+                   image: @article.image.thumb.url
+= render_breadcrumbs builder: ::Breadcrumbs::CustomBuilder
+%section.section.is-paddingless-side
+  .container
+    .columns
+      .column.is-two-thirds
+        .columns
+          .column
+            .box
+              - if user_signed_in? && current_user.admin?
+                = link_to "この記事を編集する", edit_admin_article_path(@article), class: "button is-primary is-large", target: "_blank"
+              %p #{@article.updated_at.strftime("%Y年%m月%d日")} 更新
+              .is-margin-top-10
+                = render partial: "shared/tag_list", collection: @article.tags
+              %p.is-margin-top-10
+                この記事を
+                %strong= @article.helpful_count
+                人が参考になったと言っています
+              .is-margin-top-10
+                = render 'shared/share_button', article: @article
+              %h1.title
+                %strong
+                  = @article.title
+              = image_tag @article.image
+              %p.article
+                = @article.description
+              %nav.panel.is-margin-top-20
+                %p.panel-heading 目次
+                .panel-block
+                  %ul.menu-list
+                    - article_index(@article.content).each do |a_index|
+                      %li.li-toggle
+                        %a{href: "##{a_index[:text].gsub(/ |　|：|:/, "-")}"}
+                          - if a_index[:tag_name] == "h2"
+                            %span.icon.is-small.is-text-primary
+                              %i.fa.fa-circle
+                            = a_index[:text]
+                          - else
+                            %div{style: "margin-left: 20px;"}
+                              %span.icon.is-small.is-text-primary
+                                %i.fa.fa-circle
+                              = a_index[:text]
+
+              .content.article
+                = markdown(@article.content)
+              .has-text-centered
+                %p もしこの記事が参考になったら下記のボタンをクリック！
+                = render "helpful_button", article: @article
+              .is-margin-top-20
+                = render 'shared/share_button', article: @article
+              %p.is-margin-top-20
+                ※ 記事の内容は医学的な正当性、効果、結果を保証するものではありませんので、内容を参考にする場合は医師や専門家の意見をもとに自己責任で行って下さい。
+
+      %aside.column
+        = render 'shared/side_bar'
+= javascript_include_tag "components/helpful_button"
+:javascript
+  $("#helpful_button").on("click", function(){
+    helpful_function(#{ j @article.id.to_s })
+  });

@@ -1,0 +1,24 @@
+- if flash.present?
+  .container.is-padding-top-20.message-container
+    - if flash[:alert]
+      .message.is-primary
+        .message-header
+          %p エラー
+          %button.delete
+        .message-body
+          - if flash[:alert].kind_of?(Array)
+            - flash[:alert].each do |message|
+              %p= message
+          - else
+            %p= flash[:alert]
+    - if flash[:notice]
+      .message.is-primary
+        .message-header
+          %p お知らせ
+          %button.delete
+        .message-body
+          - if flash[:notice].kind_of?(Array)
+            - flash[:notice].each do |message|
+              %p= message
+          - else
+            %p= flash[:notice]

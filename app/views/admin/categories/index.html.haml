@@ -1,0 +1,17 @@
+%section.section
+  .container
+    .box
+      %h1 Rootカテゴリ一覧
+      %table.table
+        %thead
+          %tr
+            %th ID
+            %th カテゴリ名（小カテゴリ数）
+            %th 記事数
+            %th 操作
+        %tbody
+          = render @categories
+      .level
+        .level-left
+          .level-item
+            = link_to "新規作成", new_admin_category_path, class: "button", remote: true

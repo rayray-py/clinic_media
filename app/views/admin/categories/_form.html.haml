@@ -1,0 +1,7 @@
+= form_for [:admin, category] do |f|
+  .control.has-addons
+    = f.text_field :name, autofocus: true, class: "input", required: true
+    - if controller.action_name == "new"
+      - if params[:category_id]
+        = f.hidden_field :category_id, value: params[:category_id]
+    = f.submit submit_word, class: "button"

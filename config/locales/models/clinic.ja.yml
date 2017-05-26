@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      clinic: クリニック
+    attributes:
+      clinic:
+        id: ID
+        name: 名前
+        address: 住所
+        site_url: 公式URL
+        phone_number: 電話番号
+        postal_code: 郵便番号
+        transportation: 交通手段
+        holiday: 休業日
+        reservation: 予約方法
+        office_hours: 診療時間
+        credit_card: クレジットカード
+        medical_loan: メディカルローン
+  enums:
+    clinic:
+      medical_loan:
+        no: なし
+        yes: あり

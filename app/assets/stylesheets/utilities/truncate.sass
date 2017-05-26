@@ -1,0 +1,12 @@
+$rows: 1 2 3 4 5
+
+.truncate
+  overflow: hidden
+  margin-bottom: 0
+  text-overflow: ellipsis
+  display: -webkit-box
+  -webkit-box-orient: vertical
+
+  @each $row in $rows
+    &.is-row-#{$row}
+      -webkit-line-clamp: $row

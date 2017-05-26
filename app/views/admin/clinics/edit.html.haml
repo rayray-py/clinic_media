@@ -1,0 +1,67 @@
+%section.section
+  .container
+    = render "shared/flash_message/model_validation", instance: @clinic
+    .card
+      .card-content
+        %h1.title クリニック編集画面
+        %hr
+        = form_for [:admin, @clinic] do |f|
+          .control.is-horizontal
+            .control-label
+              %label.label クリニック名
+            .control
+              = f.text_field :name, autofocus: true, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 住所
+            .control
+              = f.text_field :address, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 公式URL
+            .control
+              = f.text_field :site_url, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 電話番号
+            .control
+              = f.text_field :phone_number, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 郵便番号
+            .control
+              = f.text_field :postal_code, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 交通手段
+            .control
+              = f.text_field :transportation, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 休業日
+            .control
+              = f.text_field :holiday, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 予約方法
+            .control
+              = f.text_field :reservation, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label 診療時間
+            .control
+              = f.text_field :office_hours, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label クレジットカード
+            .control
+              = f.text_field :credit_card, class: "input"
+          .control.is-horizontal
+            .control-label
+              %label.label メディカルローン
+            .control
+              %span.select
+                = f.collection_select :medical_loan, Clinic.medical_loans_i18n, :first, :last
+          .level
+            .level-item.has-text-centered
+              = f.submit "この内容で編集", class: "button is-primary is-outlined"
